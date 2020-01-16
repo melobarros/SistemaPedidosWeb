@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml">
+
+
+    <h:form>
+        <p:messages redisplay="true" showDetail="true"></p:messages>
+        
+        <br/>
+        <p:fieldset legend="Produto">
+            <p:panelGrid columns="2">
+                <h:outputLabel value="Descricao"></h:outputLabel>
+                <p:inputText value="#{produtoBean.p.descricao}"> </p:inputText>
+
+                <p:commandButton value="Salvar" action="#{produtoBean.salvar()}" update="@form"></p:commandButton>
+
+            </p:panelGrid>
+            
+            
+
+            <br/><hr/><br/>
+            
+            <p:dataTable value="#{produtoBean.pList}" var="p">
+                <p:column>
+                    <p:commandButton value="Editar" action ="#{produtoBean.editar(p)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Excluir" action="#{produtoBean.excluir(p)}" update="@form"></p:commandButton>
+                </p:column>
+                
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{p.descricao}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>
+
